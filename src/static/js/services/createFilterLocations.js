@@ -1,9 +1,10 @@
-const section_locations = document.getElementById('locations')
+let data_locations = {}
+let counterPositions = 0
 
 function searchData(){
     const geograficLevel = ["N1", "N7", "N6"]
+    let value = null
     for(value of geograficLevel){
-
         getData(value)
     }
 }
@@ -15,6 +16,11 @@ async function getData(geograficLevel){
     })
     .then(data => {
         insertData(data)
+        let key = null //para não dar erro de undefined
+        for(key in data){
+            data_locations[counterPositions] = data[key]  
+            counterPositions++          
+        }        
     })
     .catch(error => {
         console.log(error)
@@ -22,8 +28,9 @@ async function getData(geograficLevel){
 }
 
 function insertData(data){
+    const section_locations = document.getElementById('locations')
+    let values = null
     for(values of data){
-        console.log(values);
         let option = document.createElement('option')
         option.value = values.nome
         option.text = values.nome
@@ -33,6 +40,11 @@ function insertData(data){
     lines.value = "discard"
     lines.text = "---------"
     section_locations.appendChild(lines)
+}
+
+
+export function getAllLocations(){
+    return data_locations
 }
 
 searchData()

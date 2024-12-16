@@ -1,0 +1,33 @@
+import { getInformationInput } from "../services/getInformation.js";
+import { createTableWithData } from "../model/tableToMainScreen.js";
+const aggregate = 7063
+
+
+function getAllInformation(){
+    const { localId, localLevel, periodId } = getInformationInput()    
+    return { localId, localLevel, periodId }
+}
+
+function startSearch(){
+    getAllInformation()
+    sendEndpointIBGE()
+}
+
+async function sendEndpointIBGE(){
+    const { localId, localLevel, periodId } = getAllInformation()
+    await fetch(`https://servicodados.ibge.gov.br/api/v3/agregados/${aggregate}/periodos/${periodId}/variaveis/44|68|2292|45?localidades=${localLevel}[${localId}]&classificacao=315[7169,7170,7445,7486,7558,7625,7660,7712,7766,7786]`) 
+
+    .then(result => {
+        return result.json()
+    })
+    .then(data =>{
+        //todo - função para fazer a tabela/exibir as informações na tela
+        createTableWithData(data)
+    })
+    .catch(error => {
+        console.log(error.message);
+    })
+}
+
+const send_button = document.getElementById('send_button')
+send_button.onclick = startSearch

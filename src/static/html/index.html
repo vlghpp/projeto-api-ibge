@@ -3,17 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="../js/createFilterLocations.js" defer></script>
-    <script src="../js/createFilterPeriod.js" defer></script>
-    <script src="../js/getInformation.js" defer></script>
+    <script src="../js/services/createFilterLocations.js" type="module" defer></script>
+    <script src="../js/services/createFilterPeriod.js"type="module" defer></script>
+    <script src="../js/controller/information_controller.js" type="module" defer></script>
     <title>Tabela INPC</title>
 </head>
 <body>
-    <form action="./teste.html">
-        <select name="based_location_in_nivel" id="locations"></select>
-        <select name="based_period_in_data" id="dates"></select>
-        <button type="submit" id="send_button" onclick="getInformationAll()">Enviar</button>
-    </form>
-    
+    <select name="based_location_in_nivel" id="locations"></select>
+    <select name="based_period_in_data" id="dates"></select>
+    <button type="submit" id="send_button">Enviar</button>
+
+    <p id="table_data"></p>
 </body>
 </html>

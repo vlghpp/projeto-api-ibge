@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/src/static/css/style.css">
     <script src="../js/services/createFilterLocations.js" type="module" defer></script>
     <script src="../js/services/createFilterPeriod.js"type="module" defer></script>
-    <script src="../js/controller/information_controller.js" type="module" defer></script>
+    <script src="../js/controller/informationController.js" type="module" defer></script>
     <title>Tabela INPC</title>
 </head>
 <body>
@@ -13,6 +14,38 @@
     <select name="based_period_in_data" id="dates"></select>
     <button type="submit" id="send_button">Enviar</button>
 
-    <p id="table_data"></p>
+    <table id="table_data">
+        <thead>
+            <tr>
+                <th id="name_table" colspan="11"></th>
+            </tr>
+            <tr>
+                <th>Índice geral e grupos de produtos e serviços</th>
+                <th>Índice geral</th>
+                <th>Alimentação e bebidas</th>
+                <th>Habitação</th>
+                <th>Artigos de residência</th>
+                <th>Vestuário</th>
+                <th>Transportes</th>
+                <th>Saúde e cuidados pessoais</th>
+                <th>Despesas pessoais</th>
+                <th>Educação</th>
+                <th>Comunicação</th>
+            </tr>
+        </thead>
+        <tbody id="tbody">
+            <tr class="tr_data">
+                <th>Variação mensal (%)</th>
+            </tr>
+            <tr class="tr_data">
+                <th>Variação acumulada no ano (%)</th>
+            </tr>
+            <tr class="tr_data">
+                <th>Peso mensal (%)</th>
+            </tr>
+        </tbody>
+        <tfoot id="tfoot"></tfoot>
+    </table>
+
 </body>
 </html>

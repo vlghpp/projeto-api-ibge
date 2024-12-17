@@ -1,0 +1,119 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    margin: 0;
+    padding: 20px;
+}
+
+/* Estilizando os selects */
+select {
+    width: 250px;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    font-size: 16px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: border-color 0.3s;
+}
+
+select:focus {
+    border-color: #4CAF50;
+    outline: none;
+    box-shadow: 0 2px 5px rgba(76, 175, 80, 0.3);
+}
+
+/* Estilizando o botão */
+#send_button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    margin: 10px 0;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+/* Efeito de hover no botão */
+#send_button:hover {
+    background-color: #45a049;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Estilizando o container do formulário */
+.form-container {
+    max-width: 500px;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilizando os rótulos (labels) */
+label {
+    font-size: 16px;
+    margin-bottom: 8px;
+    display: block;
+    font-weight: bold;
+}
+
+#table_data{
+    display: none;
+}
+#table_data {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-family: Arial, sans-serif;
+}
+
+/* Cabeçalho da tabela */
+#table_data thead tr {
+    background-color: #4CAF50;
+    color: white;
+    text-align: left;
+}
+
+#table_data th {
+    padding: 10px;
+    font-weight: bold;
+}
+
+/* Linhas do corpo da tabela */
+.tr_data {
+    background-color: #f9f9f9;
+}
+
+/* Adicionando bordas e alternando cores de fundo das linhas */
+#table_data td, #table_data th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+/* Cor de fundo para linhas de cabeçalho */
+#name_table {
+    background-color: #3e8e41;
+    color: white;
+    text-align: center;
+}
+
+/* Efeito hover nas linhas */
+.tr_data:hover {
+    background-color: #f1f1f1;
+}
+
+/* Ajustando o tamanho da tabela */
+#table_data {
+    max-width: 100%;
+    overflow-x: auto;
+}
+
+/* Adicionando um sombreamento suave */
+#table_data {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}

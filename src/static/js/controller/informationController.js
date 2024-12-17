@@ -1,10 +1,10 @@
-import { getInformationInput } from "../services/getInformation.js";
-import { createTableWithData } from "../model/tableToMainScreen.js";
+import { getInformationInputIds, getInformationInputs } from "../services/getInformation.js";
+import { createTableWithData } from "../view/tableToMainScreen.js";
 const aggregate = 7063
 
 
 function getAllInformation(){
-    const { localId, localLevel, periodId } = getInformationInput()    
+    const { localId, localLevel, periodId } = getInformationInputIds()    
     return { localId, localLevel, periodId }
 }
 
@@ -21,8 +21,8 @@ async function sendEndpointIBGE(){
         return result.json()
     })
     .then(data =>{
-        //todo - função para fazer a tabela/exibir as informações na tela
-        createTableWithData(data)
+        const { localName, periodName } = getInformationInputs()        
+        createTableWithData(data, localName, periodName, periodId)
     })
     .catch(error => {
         console.log(error.message);

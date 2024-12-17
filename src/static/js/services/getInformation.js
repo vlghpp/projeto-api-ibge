@@ -1,20 +1,29 @@
 import { getDataIdNamePeriods as getAllPeriods } from "./createFilterPeriod.js"
 import { getAllLocations } from "./createFilterLocations.js"
 
-export function getInformationInput() {
-    const localName = document.getElementById('locations').value
-    const periodName = document.getElementById('dates').value
+//Fazer uma classe contendo tudo e exportar apenas ela (design patterns)
+
+let localName = null
+let periodName = null
+
+export function getInformationInputIds() {
+    localName = document.getElementById('locations').value
+    periodName = document.getElementById('dates').value
 
     //trativa para o -------- do local e --------- das datas
     if(localName === "discard" || periodName === "discard"){
         alert("Foi escolhido uma opção inválida")    
     }else{
-        const { localId, localLevel, periodId } = getParamsToEndpoint(localName, periodName)
+        const { localId, localLevel, periodId } = getParamsIdToEndpoint(localName, periodName)
         return { localId, localLevel, periodId }
     }
 }
 
-function getParamsToEndpoint(local, period) {
+export function getInformationInputs(){
+    return { localName, periodName }
+}
+
+function getParamsIdToEndpoint(local, period) {
     const data_periods = getAllPeriods() 
     const data_locations = getAllLocations() 
 

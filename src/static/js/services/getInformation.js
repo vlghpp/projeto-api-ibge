@@ -1,7 +1,8 @@
 import { getDataIdNamePeriods as getAllPeriods } from "./createFilterPeriod.js"
 import { getAllLocations } from "./createFilterLocations.js"
-
+const tableRows = document.querySelectorAll('.tr_data')
 //Fazer uma classe contendo tudo e exportar apenas ela (design patterns)
+//Mudar do value ser o id ai é só consultar pelo value (acho que dessa forma posso apagar toda getParamsIdToEndpoint())
 
 let localName = null
 let periodName = null
@@ -43,4 +44,32 @@ function getParamsIdToEndpoint(local, period) {
     }
 
     return { localId, localLevel, periodId }
+}
+
+export function getAllDataMonthlyVariation(){
+    let monthlyVariation = []
+    
+    for(const tr of tableRows[0].children){
+        for(const tdAndTh of tr.children){
+            if(tdAndTh.tagName !== "TH"){
+                console.log(tdAndTh.textContent);
+                monthlyVariation.push(tdAndTh.textContent)
+            }
+        }
+    }
+    return monthlyVariation
+}
+
+export function getAllDataAccumulatedVariationYear(){
+    let accumulatedVariationYear = []
+
+    for(const tr of tableRows[1].children){
+        for(const tdAndTh of tr.children){
+            if(tdAndTh.tagName !== "TH"){
+                console.log(tdAndTh.textContent);
+                accumulatedVariationYear.push(tdAndTh.textContent)
+            }
+        }
+    }
+    return accumulatedVariationYear
 }

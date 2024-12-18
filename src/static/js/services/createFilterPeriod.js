@@ -1,7 +1,7 @@
 let data_periods = {}
-
+const aggregate = 7063 //7060
 async function getData(){
-    await fetch(`https://servicodados.ibge.gov.br/api/v3/agregados/7063/periodos`)
+    await fetch(`https://servicodados.ibge.gov.br/api/v3/agregados/${aggregate}/periodos`)
     .then(result => {
         return result.json()
     })
@@ -16,8 +16,7 @@ async function getData(){
 
 function insertData(data){
     const section_dates = document.getElementById('dates')
-    let values = null
-    for(values of data){
+    for(let values of data){
         let option = document.createElement('option')
         option.value = values.literals[0]
         option.text = values.literals[0]

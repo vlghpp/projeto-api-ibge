@@ -1,23 +1,21 @@
 let data_locations = {}
 let counterPositions = 0
-
+const aggregate = 7063 //7060
 function searchData(){
     const geograficLevel = ["N1", "N7", "N6"]
-    let value = null
-    for(value of geograficLevel){
+    for(let value of geograficLevel){
         getData(value)
     }
 }
 
 async function getData(geograficLevel){
-    await fetch(`https://servicodados.ibge.gov.br/api/v3/agregados/7063/localidades/${geograficLevel}`)
+    await fetch(`https://servicodados.ibge.gov.br/api/v3/agregados/${aggregate}/localidades/${geograficLevel}`)
     .then(result => {
         return result.json()
     })
     .then(data => {
         insertData(data)
-        let key = null //para não dar erro de undefined
-        for(key in data){
+        for(let key in data){
             data_locations[counterPositions] = data[key]  
             counterPositions++          
         }        
@@ -29,8 +27,7 @@ async function getData(geograficLevel){
 
 function insertData(data){
     const section_locations = document.getElementById('locations')
-    let values = null
-    for(values of data){
+    for(let values of data){
         let option = document.createElement('option')
         option.value = values.nome
         option.text = values.nome
@@ -41,7 +38,6 @@ function insertData(data){
     lines.text = "---------"
     section_locations.appendChild(lines)
 }
-
 
 export function getAllLocations(){
     return data_locations

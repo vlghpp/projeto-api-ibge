@@ -1,46 +1,67 @@
 const table = document.getElementById('table_data')
 const tbody = document.getElementById('tbody')
 const tfoot = document.getElementById('tfoot')
+const chart = document.getElementById('myChart')
 const allTableRows = document.querySelectorAll(".tr_data")
+let trFoot = null, thFoot = null
+let hasContent = false
 export function createTableWithData(data, localName, periodName, periodId) {
-    //pega o conteúdo, já está certo
+    if(hasContent){
+        for(const child of tbody.children){
+            for(const childOfChild of child.children){
+                if(childOfChild.tagName != "TH"){
+                    childOfChild.textContent = ""    
+                }
+            }
+        }
+        thFoot.textContent = `Fonte: IBGE - Índice Nacional de Preços ao Consumidor ${localName} - ${periodName}` 
+    }else{
+        trFoot = document.createElement('tr')
+        thFoot = document.createElement('th')
+        thFoot.colSpan = 11
+        trFoot.appendChild(thFoot)
+        tfoot.appendChild(trFoot)
+    }
+    
     const nameTable = document.getElementById('name_table')
     nameTable.textContent = `${localName} - ${periodName}`
 
-    table.style.display = 'block'
+    table.style.display = 'block' 
+    chart.style.display = 'block'
 
-    let i = 0
-    let j = 0
-    let counter = 0
-    for(i in data){
-        for(j in data[i].resultados){ 
-            
-            const td = document.createElement('td')   
-            /**
-             * A api retorna 4 objetos, sendo o INPC - Variação mensal
-             * INPC - Variação anual acumulada
-             * INPC - Variação acumulada em 12 meses
-             * INPC - Peso mensal
-             * 
-             * Então por estar ignorando o INPC - Variação acumulada em 12 meses ele passava direto do counter 1 para o 3, já que o indice do INPC - Variação acumulada em 12 meses é o 2, e então não printava o valor do Peso Mensal, por isso é necessário fazer essa correção de counter == 3 para counter = 2
-             *  */  
-            if(counter == 3) counter = 2      
-            //se a variavel for variacao acumulada ele só retorna ... nas serie 
-            if(data[i].variavel !== "INPC - Variação acumulada em 12 meses"){
+    if(!hasContent){
+        let counter = 0
+        for(let i in data){
+            for(let j in data[i].resultados){ 
+                const td = document.createElement('td')   
                 let tr = allTableRows[counter]
                 const value = data[i].resultados[j].series[0].serie[periodId];
                 td.textContent = value
                 tr.appendChild(td)
-                tbody.appendChild(allTableRows[counter])
+                tbody.appendChild(tr)
             }
+            counter++
         }
-        counter++
+        thFoot.textContent = `Fonte: IBGE - Índice Nacional de Preços ao Consumidor ${localName} - ${periodName}`
+        thFoot.colSpan = 11
+        hasContent = true
+    }else{
+        let counter = 0
+        let childrenCounter = 1
+        for(let i in data){
+            for(let j in data[i].resultados){    
+                let tr = allTableRows[counter]
+                const child = tr.children[childrenCounter]
+                if(child.tagName !== "TH"){
+                    const value = data[i].resultados[j].series[0].serie[periodId];
+                    child.textContent = value 
+                }
+                childrenCounter++
+            }
+            childrenCounter = 1
+            counter++
+        }
     }
-
-    let trFoot = document.createElement('tr')
-    let thFoot = document.createElement('th')
-    thFoot.textContent = `Fonte: IBGE - Índice Nacional de Preços ao Consumidor ${periodName}`
-    thFoot.colSpan = 11
-    trFoot.appendChild(thFoot)
-    tfoot.appendChild(trFoot)
+    
 }
+

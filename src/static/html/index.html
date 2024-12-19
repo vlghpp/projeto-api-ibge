@@ -8,7 +8,6 @@
     <script src="../js/services/createFilterLocations.js" type="module" defer></script>
     <script src="../js/services/createFilterPeriod.js"type="module" defer></script>
     <script src="../js/controller/informationController.js" type="module" defer></script>
-    <script src="../js/view/graphicBar.js" type="module" defer></script>
     <title>Tabela INPC</title>
 </head>
 <body>
@@ -36,19 +35,21 @@
             </tr>
         </thead>
         <tbody id="tbody">
-            <tr class="tr_data">
+            <tr class="tr_data" id="monthlyVariation">
                 <th>Variação mensal (%)</th>
             </tr>
-            <tr class="tr_data">
+            <tr class="tr_data" id="accumulatedVariationYear">
                 <th>Variação acumulada no ano (%)</th>
             </tr>
-            <tr class="tr_data">
+            <tr class="tr_data" id="monthlyWeight">
                 <th>Peso mensal (%)</th>
             </tr>
         </tbody>
         <tfoot id="tfoot"></tfoot>
     </table>
 
-    <div id="myChart" style="width:100%; max-width:600px; height:500px;"></div>
+    <div id="graphicBar" style="width:100%; max-width:600px; height:500px;"></div>
+    <div id="graphicPie" style="width:100%; max-width:600px; height:500px;"></div>
+
 </body>
 </html>

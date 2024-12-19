@@ -12,21 +12,21 @@ export function getInformationInputIds() {
     periodName = document.getElementById('dates').value
 
     //trativa para o -------- do local e --------- das datas
-    if(localName === "discard" || periodName === "discard"){
-        alert("Foi escolhido uma opção inválida")    
-    }else{
+    if (localName === "discard" || periodName === "discard") {
+        alert("Foi escolhido uma opção inválida")
+    } else {
         const { localId, localLevel, periodId } = getParamsIdToEndpoint(localName, periodName)
         return { localId, localLevel, periodId }
     }
 }
 
-export function getInformationInputs(){
+export function getInformationInputs() {
     return { localName, periodName }
 }
 
 function getParamsIdToEndpoint(local, period) {
-    const data_periods = getAllPeriods() 
-    const data_locations = getAllLocations() 
+    const data_periods = getAllPeriods()
+    const data_locations = getAllLocations()
 
     let localId = null, periodId = null, localLevel = null
 
@@ -46,30 +46,87 @@ function getParamsIdToEndpoint(local, period) {
     return { localId, localLevel, periodId }
 }
 
-export function getAllDataMonthlyVariation(){
-    let monthlyVariation = []
-    
-    for(const tr of tableRows[0].children){
-        for(const tdAndTh of tr.children){
-            if(tdAndTh.tagName !== "TH"){
-                console.log(tdAndTh.textContent);
-                monthlyVariation.push(tdAndTh.textContent)
+export function getAllDataMonthlyVariation() {
+    let monthlyVariation = {
+        "VariacaoMensal": {
+            0: null,
+            1: null,
+            2: null,
+            3: null,
+            4: null,
+            5: null,
+            7: null,
+            8: null,
+            9: null,
+        }
+    }
+    let index = 0
+    for (const tr of tableRows) {
+
+        if(tr.id === "monthlyVariation"){
+            for (const childTr of tr.children) {
+                if(childTr.tagName != "TH"){
+                    monthlyVariation["VariacaoMensal"][index] = childTr.textContent
+                    index++
+                }
             }
         }
     }
     return monthlyVariation
 }
 
-export function getAllDataAccumulatedVariationYear(){
-    let accumulatedVariationYear = []
-
-    for(const tr of tableRows[1].children){
-        for(const tdAndTh of tr.children){
-            if(tdAndTh.tagName !== "TH"){
-                console.log(tdAndTh.textContent);
-                accumulatedVariationYear.push(tdAndTh.textContent)
+export function getAllDataAccumulatedVariationYear() {
+    let accumulatedVariationYear = {
+        "VariacaoAcumulada": {
+            0: null,
+            1: null,
+            2: null,
+            3: null,
+            4: null,
+            5: null,
+            7: null,
+            8: null,
+            9: null,
+        }
+    }
+    
+    let index = 0
+    for (const tr of tableRows) {
+        if(tr.id === "accumulatedVariationYear"){
+            for (const childTr of tr.children) {
+                if(childTr.tagName != "TH"){
+                    accumulatedVariationYear["VariacaoAcumulada"][index] = childTr.textContent
+                    index++
+                }
             }
         }
     }
     return accumulatedVariationYear
+}
+export function getAllDataMonthlyWeight() {
+    let monthlyWeight = {
+        "PesoMensal": {
+            0: null,
+            1: null,
+            2: null,
+            3: null,
+            4: null,
+            5: null,
+            7: null,
+            8: null,
+            9: null,
+        }
+    }
+    let index = 0
+    for (const tr of tableRows) {
+        if(tr.id === "monthlyWeight"){
+            for (const childTr of tr.children) {
+                if(childTr.tagName != "TH"){
+                    monthlyWeight["PesoMensal"][index] = childTr.textContent
+                    index++
+                }
+            }
+        }
+    }
+    return monthlyWeight
 }

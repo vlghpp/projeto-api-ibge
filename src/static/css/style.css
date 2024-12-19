@@ -56,7 +56,10 @@ label {
     display: block;
     font-weight: bold;
 }
-#myChart{
+#graphicBar{
+    display: none;
+}
+#graphicPie{
     display: none;
 }
 #table_data{

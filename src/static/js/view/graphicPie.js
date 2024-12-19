@@ -1,0 +1,38 @@
+import { getAllDataMonthlyWeight }from '../services/getInformation.js';
+
+google.charts.load('current', { 'packages': ['corechart'] });
+
+export function initializeChartPie() {
+
+    let monthlyWeight = getAllDataMonthlyWeight();
+
+    // Set Data
+    const data = google.visualization.arrayToDataTable([
+        ['Grupos de produtos e serviços', 'Peso Mensal'],
+        ['Alimentação e bebidas', Number(monthlyWeight["PesoMensal"][1])],
+        ['Habitação',Number(monthlyWeight["PesoMensal"][2])],
+        ['Artigos de residência',Number(monthlyWeight["PesoMensal"][3])],
+        ['Vestuário', Number(monthlyWeight["PesoMensal"][4])],
+        ['Transportes', Number(monthlyWeight["PesoMensal"][5])],
+        ['Saúde e cuidados pessoais', Number(monthlyWeight["PesoMensal"][6])],
+        ['Despesas pessoais', Number(monthlyWeight["PesoMensal"][7])],
+        ['Educação', Number(monthlyWeight["PesoMensal"][8])],
+        ['Comunicação',Number(monthlyWeight["PesoMensal"][9])]
+    ])
+    
+    // Set Options
+    const options = {
+        title: 'IBGE - Índice Nacional de Preços ao Consumidor',
+        width: 1383,
+        height: 400,
+        is3D: true
+    };
+    
+    // Draw
+    const chart = new google.visualization.PieChart(document.getElementById('graphicPie'));
+    chart.draw(data, options);
+}
+
+
+// Definir o callback para quando o Google Charts estiver carregado
+google.charts.setOnLoadCallback(initializeChartPie);

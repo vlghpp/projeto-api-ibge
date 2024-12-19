@@ -1,5 +1,8 @@
 import { getInformationInputIds, getInformationInputs } from "../services/getInformation.js";
 import { createTableWithData } from "../view/tableToMainScreen.js";
+import { initializeChartBar } from "../view/graphicBar.js";
+import { initializeChartPie } from "../view/graphicPie.js";
+
 const aggregate = 7063 //7060
 const monthlyVariation = 44 //63
 const accumulatedVariationYear = 68 //69
@@ -25,6 +28,8 @@ async function sendEndpointIBGE(){
     .then(data =>{
         const { localName, periodName } = getInformationInputs()        
         createTableWithData(data, localName, periodName, periodId)
+        initializeChartBar()
+        initializeChartPie()
     })
     .catch(error => {
         console.log(error.message);

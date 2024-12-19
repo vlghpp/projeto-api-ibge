@@ -1,26 +1,25 @@
-import { getAllDataMonthlyVariation, getAllDataAccumulatedVariationYear } from '../services/getInformation.js'
+import { getAllDataMonthlyVariation, getAllDataAccumulatedVariationYear } from '../services/getInformation.js';
 
 google.charts.load('current', { 'packages': ['corechart'] });
-google.charts.setOnLoadCallback(drawChart);
 
-let monthlyVariation = getAllDataMonthlyVariation() 
-let accumulatedVariationYear = getAllDataAccumulatedVariationYear()
+export function initializeChartBar() {
+    // Carregar os dados
+    let monthlyVariation = getAllDataMonthlyVariation(); 
+    let accumulatedVariationYear = getAllDataAccumulatedVariationYear();
 
-
-function drawChart() {
-    // Definir dados
+    // Definir dados do gráfico
     var data = google.visualization.arrayToDataTable([
         ['Índice geral e grupos de produtos e serviços', 'Variação Mensal', 'Variação Acumulada ao Ano'],
-        ['Indice Geral', 0.19, 3],
-        ['Alimentação e bebidas', 0.45, 3],
-        ['Habitação', 0.45, 3],
-        ['Artigos de residência', -0.07, 3],
-        ['Vestuário', -0.46, 3],
-        ['Transportes', 0.43, 3],
-        ['Saúde e cuidados pessoais', -0.76, 3],
-        ['Despesas pessoais', 0.30, 3],
-        ['Educação', 0.17, 3],
-        ['Comunicação', 0.09, 3]
+        ['Indice Geral', Number(monthlyVariation['VariacaoMensal'][0]), Number(accumulatedVariationYear["VariacaoAcumulada"][0])],
+        ['Alimentação e bebidas', Number(monthlyVariation['VariacaoMensal'][1]), Number(accumulatedVariationYear["VariacaoAcumulada"][1])],
+        ['Habitação',Number(monthlyVariation['VariacaoMensal'][2]), Number(accumulatedVariationYear["VariacaoAcumulada"][2])],
+        ['Artigos de residência',Number(monthlyVariation['VariacaoMensal'][3]), Number(accumulatedVariationYear["VariacaoAcumulada"][3])],
+        ['Vestuário', Number(monthlyVariation['VariacaoMensal'][4]), Number(accumulatedVariationYear["VariacaoAcumulada"][4])],
+        ['Transportes', Number(monthlyVariation['VariacaoMensal'][5]), Number(accumulatedVariationYear["VariacaoAcumulada"][5])],
+        ['Saúde e cuidados pessoais', Number(monthlyVariation['VariacaoMensal'][6]), Number(accumulatedVariationYear["VariacaoAcumulada"][6])],
+        ['Despesas pessoais', Number(monthlyVariation['VariacaoMensal'][7]), Number(accumulatedVariationYear["VariacaoAcumulada"][7])],
+        ['Educação', Number(monthlyVariation['VariacaoMensal'][8]), Number(accumulatedVariationYear["VariacaoAcumulada"][8])],
+        ['Comunicação', Number(monthlyVariation['VariacaoMensal'][9]), Number(accumulatedVariationYear["VariacaoAcumulada"][9])]
     ]);
 
     // Definir opções do gráfico
@@ -38,8 +37,10 @@ function drawChart() {
         bars: 'horizontal'
     };
 
-    // Desenhar gráfico
-    const chart = new google.visualization.BarChart(document.getElementById('myChart'));
+    // Criar e desenhar o gráfico
+    const chart = new google.visualization.BarChart(document.getElementById('graphicBar'));
     chart.draw(data, options);
 }
 
+// Definir o callback para quando o Google Charts estiver carregado
+google.charts.setOnLoadCallback(initializeChartBar);

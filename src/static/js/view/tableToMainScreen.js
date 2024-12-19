@@ -1,7 +1,8 @@
 const table = document.getElementById('table_data')
 const tbody = document.getElementById('tbody')
 const tfoot = document.getElementById('tfoot')
-const chart = document.getElementById('myChart')
+const chartBar = document.getElementById('graphicBar')
+const chartPie = document.getElementById('graphicPie')
 const allTableRows = document.querySelectorAll(".tr_data")
 let trFoot = null, thFoot = null
 let hasContent = false
@@ -27,7 +28,8 @@ export function createTableWithData(data, localName, periodName, periodId) {
     nameTable.textContent = `${localName} - ${periodName}`
 
     table.style.display = 'block' 
-    chart.style.display = 'block'
+    chartBar.style.display = 'block'
+    chartPie.style.display = 'block'
 
     if(!hasContent){
         let counter = 0

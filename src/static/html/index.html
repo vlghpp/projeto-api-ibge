@@ -5,12 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/src/static/css/style.css">
     <script src="https://www.gstatic.com/charts/loader.js"></script>
+    <script src="../js/services/createFilterAggregates.js" type="module" defer></script>
+    <script src="../js/services/createFilterIdAggregates.js" type="module" defer></script>
     <script src="../js/services/createFilterLocations.js" type="module" defer></script>
     <script src="../js/services/createFilterPeriod.js"type="module" defer></script>
     <script src="../js/controller/informationController.js" type="module" defer></script>
     <title>Tabela INPC</title>
 </head>
 <body>
+    <select name="based_aggregate" id="aggregates"></select>
+    <select name="based_id_aggregate" id="idAggregates"></select>
     <select name="based_location_in_nivel" id="locations"></select>
     <select name="based_period_in_data" id="dates"></select>
     <button type="submit" id="send_button">Enviar</button>

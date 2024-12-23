@@ -1,13 +1,8 @@
-import { getInformationInputIds, getInformationInputs, getAggregateName } from "../services/getInformation.js";
+import { getInformationInputIds, getInformationInputs } from "../services/getInformation.js";
 import { createTableWithData } from "../view/tableToMainScreen.js";
 import { initializeChartBar } from "../view/graphicBar.js";
 import { initializeChartPie } from "../view/graphicPie.js";
 import { getMetadatas } from "../services/requestMetadatas.js";
-
-//colocar no controlador as funções :
-// - getAllDataMonthlyVariation
-// - getAllDataAccumulatedVariationYear
-// - getAllDataMonthlyWeight
 
 function getAllInformation(){
     const { localId, localLevel, periodId } = getInformationInputIds()    

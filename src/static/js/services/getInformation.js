@@ -6,11 +6,6 @@ const tableRows = document.querySelectorAll('.tr_data')
 
 let localName = null
 let periodName = null
-let aggregateName = null
-let aggregate = document.getElementById('aggregates');
-aggregate.addEventListener('change', (e) => { 
-    aggregateName = e.target.value
-});
 
 export function getInformationInputIds() {
     localName = document.getElementById('locations').value
@@ -49,10 +44,6 @@ function getParamsIdToEndpoint(local, period) {
     }
 
     return { localId, localLevel, periodId }
-}
-
-export function getAggregateName(){
-    return aggregateName
 }
 
 

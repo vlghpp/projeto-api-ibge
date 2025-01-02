@@ -46,6 +46,7 @@ function getParamsIdToEndpoint(local, period) {
     return { localId, localLevel, periodId }
 }
 
+
 export function getAllDataMonthlyVariation() {
     let monthlyVariation = {
         "VariacaoMensal": {

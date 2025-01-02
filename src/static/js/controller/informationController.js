@@ -4,12 +4,6 @@ import { initializeChartBar } from "../view/graphicBar.js";
 import { initializeChartPie } from "../view/graphicPie.js";
 import { getMetadatas } from "../services/requestMetadatas.js";
 
-//colocar no controlador as funções :
-// - getAllDataMonthlyVariation
-// - getAllDataAccumulatedVariationYear
-// - getAllDataMonthlyWeight
-
-
 function getAllInformation(){
     const { localId, localLevel, periodId } = getInformationInputIds()    
     return { localId, localLevel, periodId }

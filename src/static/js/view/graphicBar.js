@@ -1,4 +1,4 @@
-import { getAllDataMonthlyVariation, getAllDataAccumulatedVariationYear } from '../services/getInformation.js';
+import { getAllDataMonthlyVariation, getAllDataAccumulatedVariationYear } from '../controller/informationController.js';
 
 google.charts.load('current', { 'packages': ['corechart'] });
 

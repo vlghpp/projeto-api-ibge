@@ -1,4 +1,4 @@
-import { getAllDataMonthlyWeight }from '../services/getInformation.js';
+import { getAllDataMonthlyWeight }from '../controller/informationController.js';
 
 google.charts.load('current', { 'packages': ['corechart'] });
 

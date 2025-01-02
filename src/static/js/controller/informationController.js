@@ -1,4 +1,4 @@
-import { getInformationInputIds, getInformationInputs } from "../services/getInformation.js";
+import { getInformationInputIds, getInformationInputs, getAllDataAccumulatedVariationYearService, getAllDataMonthlyVariationService, getAllDataMonthlyWeightService } from "../services/getInformation.js";
 import { createTableWithData } from "../view/tableToMainScreen.js";
 import { initializeChartBar } from "../view/graphicBar.js";
 import { initializeChartPie } from "../view/graphicPie.js";
@@ -7,6 +7,18 @@ import { getMetadatas } from "../services/requestMetadatas.js";
 function getAllInformation(){
     const { localId, localLevel, periodId } = getInformationInputIds()    
     return { localId, localLevel, periodId }
+}
+
+export function getAllDataAccumulatedVariationYear(){
+    return getAllDataAccumulatedVariationYearService()
+}
+
+export function getAllDataMonthlyVariation(){
+    return getAllDataMonthlyVariationService()
+}
+
+export function getAllDataMonthlyWeight(){
+    return getAllDataMonthlyWeightService()
 }
 
 function startSearch(){

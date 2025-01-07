@@ -4,16 +4,18 @@ const tableRows = document.querySelectorAll('.tr_data')
 
 let localName = null
 let periodName = null
+let subgroupName = null
 
 export function getInformationInputIds() {
     localName = document.getElementById('locations').value
     periodName = document.getElementById('dates').value
+    subgroupName = document.getElementById('subgroups').value
 
     if (localName === "discard" || periodName === "discard") {
         alert("Foi escolhido uma opção inválida")
     } else {
         const { localId, localLevel, periodId } = getParamsIdToEndpoint(localName, periodName)
-        return { localId, localLevel, periodId }
+        return { localId, localLevel, periodId, subgroupName }
     }
 }
 

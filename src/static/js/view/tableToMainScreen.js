@@ -10,7 +10,6 @@ let hasContent = false;
 export function createTableWithData(data, localName, periodName, periodId) {
     const nameTable = document.getElementById('name_table');
     nameTable.textContent = `${localName} - ${periodName}`;
-    
     table.style.display = 'block';
     chartBar.style.display = 'block';
     chartPie.style.display = 'block';
@@ -20,20 +19,16 @@ export function createTableWithData(data, localName, periodName, periodId) {
         for (let i in data) {
             for (let j in data[i].resultados) {
                 const tr = allTableRows[counter];
-                
                 const value = data[i].resultados[j].series[0].serie[periodId];
                 const td = document.createElement('td');
                 td.textContent = value;
-
                 td.setAttribute('data-row', counter);
                 td.setAttribute('data-column', j);
-                
                 tr.appendChild(td);
                 tbody.appendChild(tr);
             }
             counter++;
         }
-
         thFoot = document.createElement('th');
         thFoot.colSpan = 11;
         thFoot.textContent = `Fonte: IBGE - Índice Nacional de Preços ao Consumidor ${localName} - ${periodName}`;
@@ -46,7 +41,6 @@ export function createTableWithData(data, localName, periodName, periodId) {
         for (let i in data) {
             for (let j in data[i].resultados) {
                 const value = data[i].resultados[j].series[0].serie[periodId];
-                
                 const td = tbody.querySelector(`td[data-row="${counter}"][data-column="${j}"]`);
                 if (td) {
                     td.textContent = value;

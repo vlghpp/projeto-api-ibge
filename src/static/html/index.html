@@ -7,19 +7,29 @@
     <script src="https://www.gstatic.com/charts/loader.js"></script>
     <script src="../js/services/createFilterLocations.js" type="module" defer></script>
     <script src="../js/services/createFilterPeriod.js"type="module" defer></script>
+    <script src="../js/services/createFilterSubgroup.js" type="module" defer></script>
     <script src="../js/controller/informationController.js" type="module" defer></script>
     <title>Tabela INPC</title>
 </head>
 <body>
     <h1>Indice Nacional de Preços ao Consumidor - INPC</h1>
-    <select name="based_location_in_nivel" id="locations"></select>
-    <select name="based_period_in_data" id="dates"></select>
-    <button type="submit" id="send_button">Enviar</button>
+    <div id="opcoes">
+        <label for="locations">Selecione uma localidade:</label>
+        <select name="based_location_in_nivel" id="locations"></select>
+        <label for="dates">Selecione um periodo:</label>
+        <select name="based_period_in_data" id="dates"></select>
+        <label for="subgroups">Selecione um filtro:</label>
+        <select name="based_subgroups" id="subgroups">
+            <option value="default">Grupos</option>
+            <option value="subgroups">Grupos e Subgrupos</option>
+        </select>
+        <button type="submit" id="send_button">Enviar</button>
+    </div>
 
-    <table id="table_data">
+    <table id="table_data" class="table_data">
         <thead>
             <tr>
-                <th id="name_table" colspan="11"></th>
+                <th id="name_table" class="name_table" colspan="11"></th>
             </tr>
             <tr>
                 <th>Índice geral e grupos de produtos e serviços</th>
@@ -35,7 +45,7 @@
                 <th>Comunicação</th>
             </tr>
         </thead>
-        <tbody id="tbody">
+        <tbody id="tbody" class="tbody">
             <tr class="tr_data" id="monthlyVariation">
                 <th>Variação mensal (%)</th>
             </tr>
@@ -46,11 +56,33 @@
                 <th>Peso mensal (%)</th>
             </tr>
         </tbody>
-        <tfoot id="tfoot"></tfoot>
+        <tfoot id="tfoot" class="tfoot"></tfoot>
     </table>
 
     <div id="graphicBar" style="width:100%; max-width:600px; height:500px;"></div>
     <div id="graphicPie" style="width:100%; max-width:600px; height:500px;"></div>
 
+
+    <table id="table_subgroups" class="table_data">
+        <thead>
+            <tr>
+                <th id="name_table_subgroups" class="name_table" colspan="11"></th>
+            </tr>
+        </thead>
+        <tbody id="tbody_subgroups" class="tbody">
+            <tr class="tr_data_subgroups" id="monthlyVariation">
+                <th></th> <!--  serve como espaço branco para a célula acima do alimentacao a domicilio -->
+                <th>Variação mensal (%)</th>
+                <th>Variação acumulada no ano (%)</th>
+                <th>Peso mensal (%)</th>
+            </tr>
+            <!-- Th's vão ser criados dinâmicamente -->
+             
+        </tbody>
+        <tfoot id="tfoot_subgroups" class="tfoot"></tfoot>
+    </table>
+
+    <div id="graphicBarSubgroups" style="width:100%; max-width:600px; height:500px;"></div>
+    <div id="graphicPieSubgroups" style="width:100%; max-width:600px; height:500px;"></div>
 </body>
 </html>

@@ -3,11 +3,9 @@ import { getAllDataMonthlyVariation, getAllDataAccumulatedVariationYear } from '
 google.charts.load('current', { 'packages': ['corechart'] });
 
 export function initializeChartBar() {
-    // Carregar os dados
     let monthlyVariation = getAllDataMonthlyVariation(); 
     let accumulatedVariationYear = getAllDataAccumulatedVariationYear();
 
-    // Definir dados do gráfico
     var data = google.visualization.arrayToDataTable([
         ['Índice geral e grupos de produtos e serviços', 'Variação Mensal', 'Variação Acumulada ao Ano'],
         ['Indice Geral', Number(monthlyVariation['VariacaoMensal'][0]), Number(accumulatedVariationYear["VariacaoAcumulada"][0])],
@@ -22,7 +20,6 @@ export function initializeChartBar() {
         ['Comunicação', Number(monthlyVariation['VariacaoMensal'][9]), Number(accumulatedVariationYear["VariacaoAcumulada"][9])]
     ]);
 
-    // Definir opções do gráfico
     const options = {
         title: 'IBGE - Índice Nacional de Preços ao Consumidor',
         width: 1383,
@@ -37,10 +34,8 @@ export function initializeChartBar() {
         bars: 'horizontal'
     };
 
-    // Criar e desenhar o gráfico
     const chart = new google.visualization.BarChart(document.getElementById('graphicBar'));
     chart.draw(data, options);
 }
 
-// Definir o callback para quando o Google Charts estiver carregado
 google.charts.setOnLoadCallback(initializeChartBar);

@@ -6,7 +6,6 @@ export function initializeChartPie() {
 
     let monthlyWeight = getAllDataMonthlyWeight();
 
-    // Set Data
     const data = google.visualization.arrayToDataTable([
         ['Grupos de produtos e serviços', 'Peso Mensal'],
         ['Alimentação e bebidas', Number(monthlyWeight["PesoMensal"][1])],
@@ -20,7 +19,6 @@ export function initializeChartPie() {
         ['Comunicação',Number(monthlyWeight["PesoMensal"][9])]
     ])
     
-    // Set Options
     const options = {
         title: 'IBGE - Índice Nacional de Preços ao Consumidor',
         width: 1383,
@@ -28,11 +26,10 @@ export function initializeChartPie() {
         is3D: true
     };
     
-    // Draw
     const chart = new google.visualization.PieChart(document.getElementById('graphicPie'));
     chart.draw(data, options);
 }
 
 
-// Definir o callback para quando o Google Charts estiver carregado
+
 google.charts.setOnLoadCallback(initializeChartPie);

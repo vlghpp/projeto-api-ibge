@@ -5,6 +5,11 @@ body {
     padding: 20px;
 }
 
+#table_subgroups{
+    display: none;
+}
+
+
 select {
     width: 250px;
     padding: 10px;
@@ -62,10 +67,10 @@ label {
 #graphicPie{
     display: none;
 }
-#table_data{
+.table_data{
     display: none;
 }
-#table_data {
+.table_data {
     width: 100%;
     border-collapse: collapse;
     margin: 20px 0;
@@ -73,13 +78,13 @@ label {
 }
 
 /* Cabeçalho da tabela */
-#table_data thead tr {
+.table_data thead tr {
     background-color: #4CAF50;
     color: white;
     text-align: left;
 }
 
-#table_data th {
+.table_data th {
     padding: 10px;
     font-weight: bold;
 }
@@ -89,14 +94,18 @@ label {
     background-color: #f9f9f9;
 }
 
+.tr_data_subgroups{
+    background-color: #f9f9f9;
+}
+
 /* Adicionando bordas e alternando cores de fundo das linhas */
-#table_data td, #table_data th {
+.table_data td, .table_data th {
     border: 1px solid #ddd;
     padding: 8px;
 }
 
 /* Cor de fundo para linhas de cabeçalho */
-#name_table {
+.name_table {
     background-color: #3e8e41;
     color: white;
     text-align: center;
@@ -106,14 +115,17 @@ label {
 .tr_data:hover {
     background-color: #f1f1f1;
 }
+.tr_data_subgroups:hover {
+    background-color: #f1f1f1;
+}
 
 /* Ajustando o tamanho da tabela */
-#table_data {
+.table_data {
     max-width: 100%;
     overflow-x: auto;
 }
 
 /* Adicionando um sombreamento suave */
-#table_data {
+.table_data {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }

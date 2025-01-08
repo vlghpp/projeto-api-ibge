@@ -7,6 +7,7 @@ import { getMetadatas } from "../services/requestMetadatas.js";
 import { getMetadatasSubgroups } from "../services/requestMetadatasSubgroups.js";
 import { getAllIdSubgroups, getAllSubgroups } from "../services/createFilterSubgroup.js";
 import { createTableSubgroups, deleteTableSubgroups, getAllDataMonthlyVariationTable, getAllDataMonthlyWeightTable, getAllDataYearVariationTable } from "../view/tableSubgroups.js";
+import { dataTableToCSVGroups, dataTableToCSVSubgroups } from "../services/dataTableToCSV.js";
 
 function getAllInformation(){
     const { localId, localLevel, periodId, subgroupName } = getInformationInputIds()    
@@ -24,7 +25,8 @@ export function getAllDataMonthlyVariation(){
 export function getAllDataMonthlyWeight(){
     return getAllDataMonthlyWeightService()
 }
-function getAllDataMonthlyVariatioSubgroups(){
+
+function getAllDataMonthlyVariationSubgroups(){
     return getAllDataMonthlyVariationTable()
 }
 function getAllDataYearVariationSubgroups(){
@@ -57,7 +59,6 @@ async function sendEndpointIBGE(){
             .then(data => {
                 createTableSubgroups(data, localName, periodName, periodId)
                 const dataWeightMonthly = getAllDataMonthlyWeightSubgroups()
-                console.log("ESTÁ CHEGANDO AS INFORMAÇÕES: NOME DOS SUBGRUPOS", nameSubgroups, "\n PESO MENSAL: ", dataWeightMonthly);
                 initializeChartBar(nameSubgroups, dataWeightMonthly)
             })
             
@@ -73,3 +74,26 @@ async function sendEndpointIBGE(){
 
 const send_button = document.getElementById('send_button')
 send_button.onclick = startSearch
+
+
+const csv_button_groups = document.getElementById('csv_button_groups')
+
+csv_button_groups.onclick = function(){
+    const variationMonthly = getAllDataMonthlyVariation()
+    const variationYear = getAllDataAccumulatedVariationYear()
+    const variationWeight = getAllDataMonthlyWeight()
+    dataTableToCSVGroups(variationMonthly,variationYear,variationWeight)
+}
+
+const csv_button_subgroups = document.getElementById('csv_button_subgroups')
+
+csv_button_subgroups.onclick = function(){
+    const variationMonthly = getAllDataMonthlyVariationSubgroups()
+    console.log("PRINTANDO VARIAÇÃO MENSAL: ", variationMonthly);
+    
+    const variationYear = getAllDataYearVariationSubgroups()
+    console.log("PRINTANDO VARIAÇÃO ANUAL: ", variationYear);
+
+    const variationWeight = getAllDataMonthlyWeightSubgroups()
+    dataTableToCSVSubgroups(variationMonthly, variationYear, variationWeight)
+}

@@ -9,6 +9,11 @@ const chartPie = document.getElementById('graphicPieSubgroups');
 let thFoot = null;
 let hasContent = false
 
+const csv_button = document.createElement('button')
+csv_button.textContent = "EXPORTAR"
+csv_button.id = 'csv_button_subgroups'
+thead.appendChild(csv_button)
+
 let data_monthly_variation = []
 let data_year_variation = []
 let data_weight_monthly = []

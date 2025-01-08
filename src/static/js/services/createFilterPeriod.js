@@ -10,7 +10,7 @@ async function getData(){
         data_periods = data
     })
     .catch(error => {
-        console.log(error)
+        console.error(error.message)
     })
 }
 

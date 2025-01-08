@@ -2,7 +2,7 @@ const table = document.getElementById('table_data');
 const tbody = document.getElementById('tbody');
 const tfoot = document.getElementById('tfoot');
 const allTableRows = document.querySelectorAll(".tr_data");
-const chartBar = document.getElementById('graphicBar');
+const chartColumn = document.getElementById('graphicBar');
 const chartPie = document.getElementById('graphicPie');
 let thFoot = null;
 let hasContent = false;
@@ -11,7 +11,7 @@ export function createTableWithData(data, localName, periodName, periodId) {
     const nameTable = document.getElementById('name_table');
     nameTable.textContent = `${localName} - ${periodName}`;
     table.style.display = 'block';
-    chartBar.style.display = 'block';
+    chartColumn.style.display = 'block';
     chartPie.style.display = 'block';
 
     if (!hasContent) {

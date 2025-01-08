@@ -10,7 +10,7 @@ async function getData(){
         insertData(data)
     })
     .catch(error => {
-        console.log(error)
+        console.log(error.message)
     })
 }
 

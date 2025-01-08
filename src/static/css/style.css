@@ -61,6 +61,9 @@ label {
     display: block;
     font-weight: bold;
 }
+#graphicBarSubgroups{
+    display: none;
+}
 #graphicBar{
     display: none;
 }

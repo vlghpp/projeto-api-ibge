@@ -1,11 +1,12 @@
 import { getInformationInputIds, getInformationInputs, getAllDataAccumulatedVariationYearService, getAllDataMonthlyVariationService, getAllDataMonthlyWeightService } from "../services/getInformation.js";
 import { createTableWithData } from "../view/tableToMainScreen.js";
-import { initializeChartBar } from "../view/graphicBar.js";
+import { initializeChartColumn } from "../view/graphicColumn.js";
 import { initializeChartPie } from "../view/graphicPie.js";
+import { initializeChartBar } from "../view/graphicBarSubgroups.js";
 import { getMetadatas } from "../services/requestMetadatas.js";
 import { getMetadatasSubgroups } from "../services/requestMetadatasSubgroups.js";
-import { getAllIdSubgroups } from "../services/createFilterSubgroup.js";
-import { createTableSubgroups } from "../view/tableSubgroups.js";
+import { getAllIdSubgroups, getAllSubgroups } from "../services/createFilterSubgroup.js";
+import { createTableSubgroups, deleteTableSubgroups, getAllDataMonthlyVariationTable, getAllDataMonthlyWeightTable, getAllDataYearVariationTable } from "../view/tableSubgroups.js";
 
 function getAllInformation(){
     const { localId, localLevel, periodId, subgroupName } = getInformationInputIds()    
@@ -23,6 +24,15 @@ export function getAllDataMonthlyVariation(){
 export function getAllDataMonthlyWeight(){
     return getAllDataMonthlyWeightService()
 }
+function getAllDataMonthlyVariatioSubgroups(){
+    return getAllDataMonthlyVariationTable()
+}
+function getAllDataYearVariationSubgroups(){
+    return getAllDataYearVariationTable()
+}
+function getAllDataMonthlyWeightSubgroups(){
+    return getAllDataMonthlyWeightTable()
+}
 
 function startSearch(){
     sendEndpointIBGE()
@@ -37,25 +47,27 @@ async function sendEndpointIBGE(){
     .then(data =>{
         const { localName, periodName } = getInformationInputs()        
         createTableWithData(data, localName, periodName, periodId)
-        initializeChartBar()
+        initializeChartColumn()
         initializeChartPie()
         if(subgroupName != "default"){
             const idSubgroups = getAllIdSubgroups()
+            const nameSubgroups = getAllSubgroups()
             getMetadatasSubgroups(periodId, localLevel, localId, idSubgroups)
             .then(result => result.json())
             .then(data => {
                 createTableSubgroups(data, localName, periodName, periodId)
+                const dataWeightMonthly = getAllDataMonthlyWeightSubgroups()
+                console.log("ESTÁ CHEGANDO AS INFORMAÇÕES: NOME DOS SUBGRUPOS", nameSubgroups, "\n PESO MENSAL: ", dataWeightMonthly);
+                initializeChartBar(nameSubgroups, dataWeightMonthly)
             })
             
+        }else{
+            deleteTableSubgroups()
         }
-
-
-        //chamar função que faz a requisição dos dados para a tabela de subgroups (exemplo: getMetadatas desse arquivo), então verificar se o valor é != de default, caso for, então chamar esta função que vai ter .then criando a tabela de subgroups 
-
 
     })
     .catch(error => {
-        console.log(error.message);
+        console.error(error.message);
     })
 }
 

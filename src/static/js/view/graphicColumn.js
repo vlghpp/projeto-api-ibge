@@ -2,7 +2,7 @@ import { getAllDataMonthlyVariation, getAllDataAccumulatedVariationYear } from '
 
 google.charts.load('current', { 'packages': ['corechart'] });
 
-export function initializeChartBar() {
+export function initializeChartColumn() {
     let monthlyVariation = getAllDataMonthlyVariation(); 
     let accumulatedVariationYear = getAllDataAccumulatedVariationYear();
 
@@ -38,4 +38,4 @@ export function initializeChartBar() {
     chart.draw(data, options);
 }
 
-google.charts.setOnLoadCallback(initializeChartBar);
+google.charts.setOnLoadCallback(initializeChartColumn);

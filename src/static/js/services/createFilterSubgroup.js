@@ -1,6 +1,8 @@
+import aggregateConst from "./getVariables.js"
+
 let data_subgroups = [] 
 let id_subgroups = []
-const aggregate = 7063 
+const aggregate = aggregateConst 
 async function getData(){
     await fetch(`https://servicodados.ibge.gov.br/api/v3/agregados/${aggregate}/metadados`)
     .then(result => {

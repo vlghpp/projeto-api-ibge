@@ -1,6 +1,9 @@
+import aggregateConst from "./getVariables.js"
+
 let data_locations = {}
 let counterPositions = 0
-const aggregate = 7063 //7060
+
+const aggregate = aggregateConst
 
 function searchData(){
     const geograficLevel = ["N1", "N7", "N6"]

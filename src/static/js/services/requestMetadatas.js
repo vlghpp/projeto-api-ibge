@@ -1,4 +1,6 @@
-const aggregate = 7063 //7060
+import aggregateConst from "./getVariables.js"
+
+const aggregate = aggregateConst //7060
 const monthlyVariation = 44 //63
 const accumulatedVariationYear = 68 //69
 const monthlyWeight = 45 

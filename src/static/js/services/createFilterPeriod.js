@@ -1,5 +1,8 @@
+import aggregateConst from "./getVariables.js"
+
+
 let data_periods = {}
-const aggregate = 7063 //7060
+const aggregate = aggregateConst 
 async function getData(){
     await fetch(`https://servicodados.ibge.gov.br/api/v3/agregados/${aggregate}/periodos`)
     .then(result => {

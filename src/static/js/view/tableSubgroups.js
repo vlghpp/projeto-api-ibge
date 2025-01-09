@@ -20,7 +20,7 @@ let data_weight_monthly = []
 
 export function createTableSubgroups(data, localName, periodName, periodId) {
     const nameTable = document.getElementById('name_table_subgroups');
-    nameTable.textContent = `${localName} - ${periodName}`;
+    nameTable.textContent = `INPC - Tabela de Subgrupos: ${localName} - ${periodName}`;
     table.style.display = 'block';
     chartBar.style.display = 'block';
     chartPie.style.display = 'block';
@@ -82,12 +82,17 @@ export function createTableSubgroups(data, localName, periodName, periodId) {
         tfoot.appendChild(trFoot);
         hasContent = true;
     } else {
+        data_monthly_variation = []
+        data_year_variation = []
         data_weight_monthly = []
         for (let i in data) {
             for (let j in data[i].resultados) {
                 const value = data[i].resultados[j].series[0].serie[periodId];
-                if(i == 2){ //quer dizer que é os valores do peso mensal
-                    console.log(value)
+                if(i == 0){
+                    data_monthly_variation.push(value)
+                }else if(i == 1){ //quer dizer que é os valores do peso mensal
+                    data_year_variation.push(value)
+                }else{
                     data_weight_monthly.push(value)
                 }
                 const td = tbody.querySelector(`td[data-row-subgroup="${i}"][data-column-subgroup="${j}"]`);

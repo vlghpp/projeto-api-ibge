@@ -15,7 +15,7 @@ thead.appendChild(csv_button)
 
 export function createTableWithData(data, localName, periodName, periodId) {
     const nameTable = document.getElementById('name_table');
-    nameTable.textContent = `${localName} - ${periodName}`;
+    nameTable.textContent = `INPC - Tabela de Grupos: ${localName} - ${periodName}`;
     table.style.display = 'block';
     chartColumn.style.display = 'block';
     chartPie.style.display = 'block';
@@ -37,7 +37,7 @@ export function createTableWithData(data, localName, periodName, periodId) {
         }
         thFoot = document.createElement('th');
         thFoot.colSpan = 11;
-        thFoot.textContent = `Fonte: IBGE - Índice Nacional de Preços ao Consumidor ${localName} - ${periodName}`;
+        thFoot.textContent = `Fonte: IBGE - Índice Nacional de Preços ao Consumidor: ${localName} - ${periodName}`;
         const trFoot = document.createElement('tr');
         trFoot.appendChild(thFoot);
         tfoot.appendChild(trFoot);
@@ -55,5 +55,5 @@ export function createTableWithData(data, localName, periodName, periodId) {
             counter++;
         }
     }
-    thFoot.textContent = `Fonte: IBGE - Índice Nacional de Preços ao Consumidor ${localName} - ${periodName}`;
+    thFoot.textContent = `Fonte: IBGE - Índice Nacional de Preços ao Consumidor: ${localName} - ${periodName}`;
 }

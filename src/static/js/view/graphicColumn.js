@@ -21,15 +21,15 @@ export function initializeChartColumn() {
     ]);
 
     const options = {
-        title: 'IBGE - Índice Nacional de Preços ao Consumidor',
+        title: 'INPC - Variação mensal e acumulada no ano (%) - Índice geral e grupos de produtos e serviços',
         width: 1383,
         height: 400,
         hAxis: {
-            title: 'Total Vendido',
+            title: 'Variação acumulada ao ano(%)',
             minValue: 0,
         },
         vAxis: {
-            title: 'Valor'
+            title: 'Grupos'
         },
         bars: 'horizontal'
     };

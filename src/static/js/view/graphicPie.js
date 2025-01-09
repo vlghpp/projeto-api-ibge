@@ -20,7 +20,7 @@ export function initializeChartPie() {
     ])
     
     const options = {
-        title: 'IBGE - Índice Nacional de Preços ao Consumidor',
+        title: 'INPC - Peso mensal (%) - Grupos de produtos e serviços',
         width: 1383,
         height: 400,
         is3D: true

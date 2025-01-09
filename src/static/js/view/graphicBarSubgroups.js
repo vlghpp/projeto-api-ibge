@@ -1,8 +1,7 @@
 google.charts.load("current", { packages: ['corechart'] });
 
 export function initializeChartBar(arrayNameValue, arrayMonthlyWeight) {
-    console.log("ESTÁ SENDO CRIADO O GRAFICO DE BARRAS");
-    
+
     const arrayToChart = createArrayToChart(arrayNameValue, arrayMonthlyWeight)
     var data = google.visualization.arrayToDataTable(arrayToChart);
 
@@ -17,7 +16,7 @@ export function initializeChartBar(arrayNameValue, arrayMonthlyWeight) {
         2]);
 
     var options = {
-        title: "IBGE - Índice Nacional de Preços ao Consumidor",
+        title: "INPC - Peso Mensal(%) x Subgrupos - Subgrupos de produtos e serviços",
         bar: { groupWidth: "95%" },
         legend: { position: "none" },
     };
